@@ -32,9 +32,30 @@ let names = new Array("홍길동", "고길동", "짱구", "둘리");
 console.log(names[2]); // 짱구
 
 // 배열의 길이
+// 배열이 담긴 변수 바로 뒤에 마침표.를 붙이고
+// 그 뒤에 length를 적으면 해당 배열의 요소 개수를 반환한다.
+// arr.length
+// 이러한 속성에 접근하는 마침표.를 하위 접근 연산자라고도 부른다.
+console.log(names.length); // 4
 
 // 배열 요소의 추가/삭제
+// 요소의 추가
+// arr.push(값)
+// 전달된 값을 배열의 마지막 요소로 추가한다.
+names.push("코난");
+console.log(names[names.length-1]); // 마지막 요소 접근
 
+let cars = ["SM5", "람보르기니", "볼보 트럭", "카니발"];
+// 요소의 제거
+// arr.pop() -> 마지막 요소를 제거
+console.log(cars); // 현재 요소 출력
+cars.pop(); // 마지막 요소 제거
+console.log(cars); // 요소 제거 후 현재 요소 출력
+
+// 배열의 앞에서 요소 제거(0번째 요소 제거)
+// arr.shift()
+cars.shift(); // 0번째 요소인 "SM5" 제거
+console.log(cars); // 남은 요소 출력
 
 
 
