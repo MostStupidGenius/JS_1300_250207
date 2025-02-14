@@ -33,4 +33,5 @@ console.log(subjects);
 
 // 문자열의 앞뒤 공백을 제거한 새로운 객체를 반환
 // .trim()
+// 제거대상 문자는 공백문자, \t, \n, 기타 특수공백문자
 console.log("   Hello, World\t  ".trim());
