@@ -1,0 +1,79 @@
+<!-- c3_eventListener.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트 리스너를 이용한 이벤트 감지 및 JS코드 실행</title>
+    <style>
+        .black{
+            background-color: black;
+        }
+        .border {
+            border: 3px dashed red;
+        }
+
+        .inputBox {
+            border: 1px solid black;
+            color: purple;
+            font-size: large;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="container">
+        <header>
+            <!-- 인라인 스크립트 -->
+            <div onclick="
+                let div = document.querySelector('header>div');
+                // div.setAttribute('style', 'background-color: black');
+                div.classList.toggle('black');
+                ">헤더 div1</div>
+            <div>헤더 div2</div>
+        </header>
+        <main>
+            <div>메인1</div>
+            <div>메인2</div>
+            <div>메인3</div>
+        </main>
+        <footer>
+            <div>푸터1</div>
+            <div>푸터2</div>
+            <div>푸터3</div>
+            <div>
+                <input type="text" name="" id="i">
+            </div>
+        </footer>
+    </div>
+</body>
+<script>
+    // 이벤트 리스너 등록
+    let headers = document.querySelectorAll("header>div");
+    
+    headers.forEach(div=>{
+        div.addEventListener(
+            // "click" // 마우스 좌클릭했을 때 이벤트 발생
+            "mouseover" // 마우스를 요소 위에 올렸을 때 이벤트 발생
+            // "focus" // 요소가 클릭되거나 선택되었을 때
+        , (event)=>{
+            // e는 이벤트 객체로, 이벤트에 대한 정보를 담고 있다.
+            // 이중, e.target은 해당 이벤트가 발생한 요소를 담고 있는 속성값이다.
+            let e = event.target;
+            e.classList.toggle("border");
+            
+        });
+
+    });
+
+    let i = document.querySelector("#i");
+    i.addEventListener("focus", (event)=>{
+        let e = event.target;
+        e.classList.toggle("inputBox");
+    });
+    
+
+
+
+</script>
+</html>

@@ -1,0 +1,113 @@
+<!-- c1_querySelector.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS로 querySelector를 이용해 요소 가져오기</title>
+</head>
+<body>
+    <div id="container">
+        <header id="header">
+            <div></div>
+            <div></div>
+            <div></div>
+        </header>
+        <main id="main">
+            <div>
+                <ul class="buttons">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+            <div id="links">
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+        </main>
+        <footer id="footer">
+            <div style="background-color: rgb(53, 92, 125);"></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </footer>
+    </div>
+</body>
+<script>
+    // querySelector()는 해당 조건에 맞는 태그(요소)들 중
+    // 가장 첫번째 요소만 반환한다.
+    // header라는 id 값을 가진 header 태그의 직계자식인 div 태그들 중
+    // 첫번째 요소
+    let headerDiv1 = document.querySelector("header#header>div");
+
+    // 요소의 textContent 값은 해당 태그 안쪽의 콘텐츠를 가리키는 값이다.
+    headerDiv1.textContent = "JS코드로 채워넣은 내용입니다.";
+    // 이때, 해당 값에 html 코드를 넣더라도 단순한 문자열로 출력이 된다.
+    // headerDiv1.textContent = "<strong>JS코드로 채워넣은 내용입니다.</strong>";
+
+    // buttons 클래스를 가진 ul 태그 안에 있는 모든 li 태그들을
+    // lis 변수에 요소들로 담는다.
+    let lis = document.querySelectorAll("ul.buttons > li");
+
+    // .innerHTML의 값을 변경하면 해당 요소의 내부에
+    // 새로운 HTML 내용을 넣고 렌더링할 수 있다.
+    // play 버튼에 숫자를 부여하기 위한 변수 선언 및 초기화
+    let i = 1;
+    // li 요소들의 각각에 동일한 동작을 수행하기 위해
+    // forEach문을 이용하는 코드
+    lis.forEach(li=>{
+        // 각 li요소의 innerHTML의 내용을 변경하여 버튼을 추가하는 내용
+        li.innerHTML = '<input type="button" value="play' + i + '">';
+        // i값에 따라 동적으로 버튼과 그 value를 생성하는 부분
+        i++; // i값 증가
+    });
+
+    // 속성 조작
+    // 태그의 속성을 추가하거나 변경하거나 삭제하는 등의 조작을 할 수 있다.
+    // class, style, href, src 등이 대상 속성이 될 수 있다.
+    let footerDivs = document.querySelectorAll("#footer>div");
+    i = 1
+    let r=53, g =92, b=125;
+    footerDivs.forEach(div=>{
+        // 해당 태그에 마우스를 올렸을 때 나오는 작은 팝업 내용을 설정
+        div.setAttribute("title", i + "번째 div");
+
+        // 배경색을 rgb 방식으로 변경하기 위해 모양을 잡는 부분
+        let rgb = r+ "," + g + "," + b; // 0, 0, 0
+
+        // 배경생을 rgb 방식으로 설정하는 부분
+        div.setAttribute("style", "background-color: rgb("+ rgb + ")");
+
+        // 각 색 값을 30씩 증가시키는 부분
+        let v = 30;
+        r+=v; // g+=v; // b+=v;
+
+        // 해당 태그의 텍스트 내용을 설정하는 부분
+        div.textContent = i + "번째 div의 text콘텐츠";
+
+        // i값을 1씩 증가
+        i++;
+    });
+
+    let links_lis = document.querySelectorAll("#links>ul>li");
+    // 네이버, 구글, 다음 링크를 담은 배열 만들기
+    // let sites = ["naver.com", "google.com", "daum.net"];
+    let links = ["https://naver.com", "https://google.com", "https://daum.net"];
+    i = 0;
+
+    links_lis.forEach(li=>{
+        // links에 있는 요소를 하나 가져와서
+        let text = links[i]
+            .split(".")[0] // 마침표.를 기준으로 여러 문자열로 자른 뒤의 0번째 값
+            .split("/")[2];// 슬래시/를 기준으로 2번째에 있는 내용을 가져오는 코드
+        li.innerHTML = '<a href="' + links[i] + '">' + text + '</a>';
+        i++;
+    });
+
+    </script>
+</html>

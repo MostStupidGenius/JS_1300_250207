@@ -1,0 +1,58 @@
+<!-- c2_ClassList.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS를 통한 요소(태그)들의 class 속성 다루기</title>
+    <style>
+        .square {
+            display: inline-block;
+            min-width: 300px;
+            min-height: 300px;
+            border: 1px solid black;
+        }
+        .red {
+            background-color: red;
+        }
+
+        .blue {
+            background-color: blue;
+        }
+
+        .green {
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</body>
+<script>
+    // div들을 가져온다.
+    let divs = document.querySelectorAll("#container>div");
+    let colors = ["red", "blue", "green"];
+    let i = 0;
+    divs.forEach(div=>{
+        // 클래스리스트에 새로운 클래스를 추가하는 코드
+        div.classList.add("square");
+        div.classList.add(colors[i]);
+        i++;
+    });
+
+    // div들 중 1번째에 있는 요소의 square 클래스를 제거한다.
+    divs[1].classList.remove("square");
+
+    // div들 중 0번째에 있는 요소에 blue클래스가
+    // 없다면 추가
+    // 있다면 제거
+    divs[0].classList.toggle("blue");
+    divs[0].classList.toggle("blue");
+
+
+</script>
+</html>
