@@ -1,0 +1,45 @@
+<!-- c3_JQuery_DOM.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery로 DOM 조작하기</title>
+    <script src="./jquery/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="main">
+            <ul>
+                <li>사과</li>
+                <li>바나나</li>
+                <li>망고</li>
+            </ul>
+        </div>
+        <!-- <main>
+            <div></div>
+            <div></div>
+            <div></div>
+        </main> -->
+    </div>
+</body>
+<script>
+    let $mainCloned = $("#main").clone();
+    $('body').append($mainCloned);
+    // clone을 통해 만들어진 요소는 id값도 복제한다.
+    // 그런데 id를 다루는 다양한 함수, 메서드들은,
+    // id 값을 가진 요소는 하나로 간주하기 때문에
+    // id값을 가져와도 쓸모가 없다.
+
+    // #으로 아이디 값을 통해 요소를 가져오는 경우,
+    // 가장 먼저 그 아이디값을 가진 요소 하나만 jquery 객체로
+    // 받아온다. 즉, 두번째 이후의 id값을 가진 요소는 가져오지 않는다.
+    let $mains = $("#main");
+    $mains.click((event)=>{
+        // $mains.css("background-color", "skyblue");
+        $(event.target).css("background-color", "skyblue");
+    });
+
+
+</script>
+</html>

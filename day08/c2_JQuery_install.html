@@ -1,0 +1,110 @@
+<!-- c2_JQuery_install.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQuery 설치 및 사용하기</title>
+    <!-- CDN 방식
+    Content Delivery Network
+    인터넷만 있다면 쉽게 가져다 쓰는 방법
+    장:다운로드x, 쉽게 사용
+    단: 인터넷이 없으면 쓸 수 없다.
+    -->
+    <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> -->
+    <!-- 파일 직접 쓰기
+    파일을 다운로드 받아서 현재 html 파일에 직접 임포트하는 방식이다.
+    장: 인터넷x 가능하다
+    단: 파일을 직접 관리해야 한다.(경로)
+    -->
+    <script src="./jquery/jquery-3.7.1.min.js"></script>
+    <style>
+        .skyblue {
+            background-color: skyblue;
+        }
+
+        #mainDiv {
+            min-width: 300px;
+            min-height: 300px;
+        }
+        .border {
+            border: 1px solid rgba(0, 0, 0, 0.658);
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <header>
+            <div>a</div>
+            <div>b</div>
+            <div>c</div>
+        </header>
+        <main>
+            <div>
+                <button id="btn">버튼</button>
+                <p id="text">기존 텍스트</p>
+            </div>
+            <div id="mainDiv" class="border">메인div</div>
+        </main>
+        <footer>
+            <div>푸터1</div>
+            <div>푸터2</div>
+        </footer>
+    </div>
+</body>
+<script>
+    $(document).ready(()=>{
+        // 페이지가 모두 로딩 되었을 때, 해당 코드가 실행된다.
+        $("#btn")
+        // 버튼 요소가 클릭되었을 때 이벤트 처리
+        .click((event)=>{
+            // text id를 가진 요소의 내용을 전달한 내용으로 변경
+            $("#text").text("바뀐 내용");
+        });
+    });
+</script>
+<script>
+    // jQuery
+    // 기본 사용법
+    // jQuery의 모든 기능은 $로 시작한다.
+    // $는 jQuery 객체를 의미하며, DOM 요소 선택, 이벤트 처리,
+    // 애니메이션 등을 수행할 수 있다.
+    // DOM 요소 선택
+    // js 방식
+    let header = document.querySelector("#main>header");
+    header.setAttribute("style", "background-color: yellow");
+
+    // jquery 방식
+    let $header = $("#main>header");
+    $header.css('background-color', "yellow");
+
+    // 푸터 태그를 선택한다
+    let $footer = $('footer>div');
+    $footer.click((event)=>{
+        // jquery 방식으로, footer의 모든 div에 적용
+        // $footer.toggleClass("skyblue");
+
+        // 이벤트가 발생한 요소에 대해서만 적용
+        event.target.classList.toggle("skyblue");
+    });
+
+    let $maindiv = $("#mainDiv");
+
+    // .hover()
+    // 함수 하나를 전달하면 마우스를 해당 요소에 올리거나 뗄 때
+    // 모두 동작하며,
+    // 함수 두 개를 전달하면, 첫번째는 해당 요소에 마우스를 올릴 때,
+    // 두번째는 해당 요소에서 마우스를 뗄 때 동작을 정의할 수 있다.
+    $maindiv.hover(()=>{
+        // 마우스가 해당 요소에 올라갈 때
+        // 해당 클래스가 추가/삭제된다.
+        $maindiv.toggleClass("skyblue");
+    }, ()=>{
+        // 마우스가 해당 요소에서 빠져나갈 때
+        // 해당 클래스가 추가/삭제된다.
+        $maindiv.toggleClass("border");
+    });
+
+
+</script>
+</html>
